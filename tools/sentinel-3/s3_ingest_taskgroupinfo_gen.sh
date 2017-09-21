@@ -20,7 +20,7 @@ set -e
 # DATAHUB_USER=""          -> datahub username (string)
 # DATAHUB_PW=""            -> datahub-user password (string)
 # TARGET_BUCKET_PREFIX=""  -> Bucket where results are written to (string)
-# SENTINEL-3-UUID-LIST=""  -> relative path of uuid/url list (string)
+# SENTINEL3_UUID_LIST=""   -> relative path of uuid/url list (string)
 
 #ENV-VARS - END
 
