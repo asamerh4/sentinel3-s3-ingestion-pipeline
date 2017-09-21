@@ -16,6 +16,7 @@ set -e
 # DOCKER_MEM=""            -> Docker engine parameter for ingester mem-setting (string)
 # DOCKER_SWAP=""           -> Docker engine parameter for ingester mem-swap-setting (string)
 # MEM=                     -> RAM (in MB) needed for one ingestion task (int)
+# USERDATA_MTD_URL         -> Provide custom URL for fetching instance metadata (string)
 # DATAHUB_USER=""          -> datahub username (string)
 # DATAHUB_PW=""            -> datahub-user password (string)
 # TARGET_BUCKET_PREFIX=""  -> Bucket where results are written to (string)
@@ -43,10 +44,11 @@ jq --slurp --raw-input 'split("\n") | map( . as $o | split("/")|
   ("command"): (env.command | fromjson |
     .environment.variables = 
     [
+      {"name":"USERDATA_MTD_URL","value":(env.USERDATA_MTD_URL)},
       {"name":"SOURCE_PRODUCT","value":($o)},
       {"name":"DATAHUB_USER","value":(env.DATAHUB_USER)},
-	  {"name":"DATAHUB_PW","value":(env.DATAHUB_PW)},
-	  {"name":"TARGET_BUCKET_PREFIX","value":(env.TARGET_BUCKET_PREFIX)}
+      {"name":"DATAHUB_PW","value":(env.DATAHUB_PW)},
+      {"name":"TARGET_BUCKET_PREFIX","value":(env.TARGET_BUCKET_PREFIX)}
      
     ]
   ),
