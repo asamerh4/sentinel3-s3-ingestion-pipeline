@@ -45,6 +45,7 @@ jq --slurp --raw-input 'split("\n") | map( . as $o | split("/")|
     .environment.variables = 
     [
       {"name":"USERDATA_MTD_URL","value":(env.USERDATA_MTD_URL)},
+      {"name":"UUID", "value":($o | .[51:87])},
       {"name":"SOURCE_PRODUCT","value":($o)},
       {"name":"DATAHUB_USER","value":(env.DATAHUB_USER)},
       {"name":"DATAHUB_PW","value":(env.DATAHUB_PW)},
