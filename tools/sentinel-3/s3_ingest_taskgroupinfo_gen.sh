@@ -30,6 +30,9 @@ export resources='[{"name":"cpus","type":"SCALAR","scalar":{"value":'$CPUS'}},{"
 export command='{"shell": false,"environment":{"variables":[]}}'
 export container='{"type":"DOCKER","docker":{"image":"","parameters":[{"key":"memory","value":"'$DOCKER_MEM'"},{"key":"memory-swap","value":"'$DOCKER_SWAP'"}]}}'
 
+#Truncate last newline from uuid-list
+truncate -s -1 $SENTINEL_3_UUID_LIST
+
 #query uuid-list and print TaskGroupInfo to stdout
 cat $SENTINEL_3_UUID_LIST |
 jq --slurp --raw-input 'split("\n") | map( . as $o | split("/")|
